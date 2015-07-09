@@ -44,3 +44,20 @@ func ReadInt(s bufio.Scanner) int {
 	return i
 }
 ```
+
+### Read long string
+
+The problem with the scanner is that it cannot read long strings
+so the reader should be used instead ([link](http://stackoverflow.com/questions/21124327)).
+
+```go
+import (
+  "bufio"
+  "strings"
+)
+
+func ReadLongString(r bufio.Reader) string {
+  s := r.ReadBytes('\n')
+  return strings.Trim(s, "\r\n")
+}
+```
