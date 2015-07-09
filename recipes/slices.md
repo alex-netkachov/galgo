@@ -9,7 +9,7 @@ Basic
 To new array:
 
 ```go
-func copy_rev(a []int) []int {
+func revd(a []int) []int {
   n := len(a)
   r := make([]int, n)
   copy(r, a)
@@ -64,4 +64,3 @@ func merge(a, b []int) []int {
   return r
 }
 ```
-
