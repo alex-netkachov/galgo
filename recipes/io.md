@@ -38,7 +38,7 @@ import (
 func ReadInt(s bufio.Scanner) int {
 	s.Split(bufio.ScanWords)
 	
-  s.Scan()
+	s.Scan()
 	i, _ := strconv.Atoi(s.Text())
 
 	return i
