@@ -64,3 +64,31 @@ func merge(a, b []int) []int {
   return r
 }
 ```
+
+### Max/Min
+
+```go
+func max(a []int) (int, int) {
+  m := a[0]
+  mi := 0
+  for i := 1; i < len(a); i++ {
+    if a[i] > m {
+      m = a[i]
+      mi = i
+    }
+  }
+  return m, mi
+}
+
+func min(a []int) (int, int) {
+  m := a[0]
+  mi := 0
+  for i := 1; i < len(a); i++ {
+    if a[i] < m {
+      m = a[i]
+      mi = i
+    }
+  }
+  return m, mi
+}
+```
