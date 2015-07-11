@@ -33,9 +33,9 @@ AVL Tree
 // based on http://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 
 type Node struct {
-	Value  int
-	Left   *Node
-	Right  *Node
+	Value int
+	Left  *Node
+	Right *Node
 
 	height int
 }
@@ -84,13 +84,13 @@ func balance(n *Node) int {
 func Insert(n *Node, value int) *Node {
 	// 1. Perform the normal BST rotation
 	if n == nil {
-		return &Node{value, 1, nil, nil}
+		return &Node{value, nil, nil, 1}
 	}
 
 	if value < n.Value {
-		n.Left = insert(n.Left, value)
+		n.Left = Insert(n.Left, value)
 	} else {
-		n.Right = insert(n.Right, value)
+		n.Right = Insert(n.Right, value)
 	}
 
 	// 2. Update height of this ancestor node
