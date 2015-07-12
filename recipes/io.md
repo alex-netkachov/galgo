@@ -12,7 +12,7 @@ import (
   "strconv"
 )
 
-func ReadInts(s bufio.Scanner) []int {
+func ReadInts(s *bufio.Scanner) []int {
 	s.Split(bufio.ScanWords)
 
 	s.Scan()
@@ -35,7 +35,7 @@ import (
   "strconv"
 )
 
-func ReadInt(s bufio.Scanner) int {
+func ReadInt(s *bufio.Scanner) int {
 	s.Split(bufio.ScanWords)
 	
 	s.Scan()
