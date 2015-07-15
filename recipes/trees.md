@@ -128,3 +128,11 @@ func Insert(n *Node, value int) *Node {
 	return n
 }
 ```
+
+Example:
+
+```go
+r := tree.Insert(nil, 1)
+r = tree.Insert(r, 2)
+r = tree.Insert(r, 3)
+```
