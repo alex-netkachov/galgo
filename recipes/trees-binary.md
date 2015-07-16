@@ -55,6 +55,10 @@ func rotateLeft(x *Node) *Node {
 	x.Right = t2
 	x.height = max(height(x.Left), height(x.Right)) + 1
 	y.height = max(height(y.Left), height(y.Right)) + 1
+	
+	// update node invariants
+	// ...
+
 	return y
 }
 
@@ -65,6 +69,10 @@ func rotateRight(y *Node) *Node {
 	y.Left = T2
 	y.height = max(height(y.Left), height(y.Right)) + 1
 	x.height = max(height(x.Left), height(x.Right)) + 1
+	
+	// update node invariants
+	// ...
+
 	return x
 }
 
