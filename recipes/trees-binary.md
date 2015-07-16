@@ -24,6 +24,7 @@ Balanced binary search tree.
 
 To change the type of the main property replace `Value int` and `func Insert(n *Node, value int) *Node` with `Value type` and `func Insert(n *Node, value type) *Node`. The `type` should support the operation `<`.
 
+
 ```go
 // based on http://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 
@@ -52,6 +53,14 @@ func max(a int, b int) int {
 	}
 	return b
 }
+
+/*
+       y                               x
+      / \     Right Rotation          / \
+     x  T3    – – – – – – – >        T1  y
+    / \       < - - - - - - -           / \
+   T1  T2     Left Rotation           T2  T3
+*/
 
 func rotateLeft(x *Node) *Node {
 	y := x.Right
@@ -142,4 +151,83 @@ Example:
 r := tree.Insert(nil, 1)
 r = tree.Insert(r, 2)
 r = tree.Insert(r, 3)
+```
+
+### Invariants
+
+#### Count of Subnodes
+
+```go
+type Node struct {
+	...
+
+	count  int
+}
+
+func count(n *Node) int {
+	if n == nil {
+		return 0
+	}
+	return n.count
+}
+
+func rotateLeft(x *Node) *Node {
+	...
+
+	cx := count(x) - count(x.Left) - count(y)
+	cy := count(y) - count(x.Right) - count(y.Right)
+
+	x.count = cx + count(x.Left) + count(x.Right)
+	y.count = cy + count(y.Left) + count(y.Right)
+
+	return y
+}
+
+func rotateRight(y *Node) *Node {
+	...
+
+	cx := count(x) - count(x.Left) - count(y.Left)
+	cy := count(y) - count(x) - count(y.Right)
+	y.count = cy + count(y.Left) + count(y.Right)
+	x.count = cx + count(x.Left) + count(x.Right)
+
+	return x
+}
+
+func Insert(n *Node, value int) *Node {
+	// 1. Perform the normal BST rotation
+	if n == nil {
+		return &Node{value, nil, nil, 1, 1}
+	}
+
+	...
+}
+```
+
+`rank` calculates order of the node in the tree:
+
+```go
+func rank(n *Node, v int) int {
+	c := n
+	s := -1
+	for {
+		if c == nil {
+			return -1
+		}
+		if v < c.Value {
+			c = c.Left
+			continue
+		}
+		if v > c.Value {
+			s += c.count - count(c.Right)
+			c = c.Right
+			continue
+		}
+		if v == c.Value {
+			s += c.count - count(c.Right)
+			return s
+		}
+	}
+	return -1
+}
 ```
