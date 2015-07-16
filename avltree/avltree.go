@@ -105,9 +105,9 @@ func InsertOrIgnore(n *Node, key int) *Node {
 	// ...
 
 	if key < n.Key {
-		n.Left = Insert(n.Left, key)
+		n.Left = InsertOrIgnore(n.Left, key)
 	} else if key > n.Key {
-		n.Right = Insert(n.Right, key)
+		n.Right = InsertOrIgnore(n.Right, key)
 	} else if key == n.Key {
 		return n
 	}
@@ -126,9 +126,9 @@ func InsertOrReplace(n *Node, key int) *Node {
 	// ...
 
 	if key < n.Key {
-		n.Left = Insert(n.Left, key)
+		n.Left = InsertOrReplace(n.Left, key)
 	} else if key > n.Key {
-		n.Right = Insert(n.Right, key)
+		n.Right = InsertOrReplace(n.Right, key)
 	} else if key == n.Key {
 		cn := createNode(key)
 		cn.height = n.height
