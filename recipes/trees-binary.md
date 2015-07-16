@@ -8,10 +8,12 @@ type Node {
   // main property
   Value int
 
-  // other properties
-
+  // navigation
   Left *Node
   Right *Node
+
+  // other properties
+  // ...
 }
 ```
 
@@ -25,6 +27,7 @@ Balanced binary search tree.
 
 type Node struct {
 	Value int
+
 	Left  *Node
 	Right *Node
 
