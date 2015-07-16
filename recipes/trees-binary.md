@@ -103,9 +103,15 @@ func Insert(n *Node, value int) *Node {
 		return &Node{value, nil, nil, 1}
 	}
 
+	// update statistics for the current node
+	// ...
+
 	if value < n.Value {
 		n.Left = Insert(n.Left, value)
+	} else if value > n.Value {
+		n.Right = Insert(n.Right, value)
 	} else {
+		// if you want to deal with duplicates, modify the code below
 		n.Right = Insert(n.Right, value)
 	}
 
@@ -199,6 +205,9 @@ func Insert(n *Node, value int) *Node {
 	if n == nil {
 		return &Node{value, nil, nil, 1, 1}
 	}
+
+	// update statistics
+	n.count++
 
 	...
 }
