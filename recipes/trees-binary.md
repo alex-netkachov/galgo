@@ -22,15 +22,20 @@ AVL Tree
 
 Balanced binary search tree.
 
+To change the type of the main property replace `Value int` and `func Insert(n *Node, value int) *Node` with `Value type` and `func Insert(n *Node, value type) *Node`. The type should support the operation `<`.
+
 ```go
 // based on http://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 
 type Node struct {
+	// main property
 	Value int
 
+	// navigation
 	Left  *Node
 	Right *Node
 
+	// other properties
 	height int
 }
 
