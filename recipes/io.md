@@ -21,7 +21,7 @@ func ReadInts(s *bufio.Scanner) []int {
 	a := make([]int, n)
 	for i := 0; i < n; i++ {
 		s.Scan()
-		a[j], _ = strconv.Atoi(s.Text())
+		a[i], _ = strconv.Atoi(s.Text())
 	}
 	return a
 }
