@@ -13,7 +13,7 @@ import (
 )
 
 func ReadInts(s *bufio.Scanner) []int {
-	s.Split(bufio.ScanWords)
+	// call s.Split(bufio.ScanWords) before calling this method
 
 	s.Scan()
 	n, _ := strconv.Atoi(s.Text())
@@ -36,7 +36,7 @@ import (
 )
 
 func ReadInt(s *bufio.Scanner) int {
-	s.Split(bufio.ScanWords)
+	// call s.Split(bufio.ScanWords) before calling this method
 	
 	s.Scan()
 	i, _ := strconv.Atoi(s.Text())
