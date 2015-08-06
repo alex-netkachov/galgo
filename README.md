@@ -15,9 +15,9 @@ that most of the algorithm examples are in C/C++ or Java. As I like Go, I've
 ported some of them.
 
 Name Galgo was chosen because it has something in common with "Go" and
-"algorithm". And it also nice that [Galgo Español][#1] is Spanish greyhound.  
+"algorithm". And it also nice that [Galgo Español][1] is a Spanish greyhound.  
 
-[1] https://en.wikipedia.org/wiki/Galgo_Espa%C3%B1ol
+[1]: https://en.wikipedia.org/wiki/Galgo_Espa%C3%B1ol
 
 Programming Contest Calendars:
 
