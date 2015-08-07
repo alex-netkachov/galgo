@@ -3,7 +3,8 @@ Galgo
 
 This is like a recipe book, but for algorithmists. It contains recipies for
 data structures (list, tree, etc) and common algorithms (binary search, merge,
-tree traversal, etc), written in Go.
+tree traversal, etc), written in Go. It also contains solutions to the problems
+I've solved and found interesting.
 
 It is not a library _per see_. It is rather a tool set for mixing and hacking at
 maximum coding speed. The typical use case is just copy-pasting some code,
