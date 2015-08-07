@@ -7,6 +7,8 @@ import (
 	"strconv"
 )
 
+// https://www.hackerrank.com/challenges/a-very-big-sum
+
 func main() {
 	s := bufio.NewScanner(bufio.NewReader(os.Stdin))
 	s.Split(bufio.ScanWords)

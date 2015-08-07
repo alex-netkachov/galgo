@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// https://www.hackerrank.com/challenges/solve-me-first
+
 func solveMeFirst(a uint32, b uint32) uint32 {
 	return a + b
 }

@@ -7,6 +7,8 @@ import (
 	"strconv"
 )
 
+// https://www.hackerrank.com/challenges/time-conversion
+
 func pad2(v int) string {
 	if v < 10 {
 		return fmt.Sprintf("0%v", v)

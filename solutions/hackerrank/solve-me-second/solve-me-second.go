@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// https://www.hackerrank.com/challenges/solve-me-second
+
 func main() {
 	var n int
 	var a int

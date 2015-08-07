@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-// go fmt extra-long-factorials.go && go run extra-long-factorials.go < extra-long-factorials.txt
+// https://www.hackerrank.com/challenges/extra-long-factorials
 
 func main() {
 	s := bufio.NewScanner(bufio.NewReader(os.Stdin))
