@@ -2,8 +2,8 @@
 
 export GOPATH=$(CURDIR)
 
-SRC = $(shell find . -name *.go)
-TESTS = $(shell find . -name *.in | sed )
+SRC = $(shell find . -name '*.go')
+TESTS = $(shell find . -name '*.in')
 
 .PHONY: all format new $(TESTS)
 
