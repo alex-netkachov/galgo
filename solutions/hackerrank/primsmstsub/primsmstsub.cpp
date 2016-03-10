@@ -9,23 +9,33 @@ using namespace std;
 class Edge
 {
 public:
-    Edge(int src, int dst, int weight) : src(src), dst(dst), weight(weight)
+    Edge(int node1, int node2, int weight) : node1(node1), node2(node2), weight(weight)
     {
     }
 
-    int getSrc()
+    int getNode1()
     {
-        return src;
+        return node1;
     }
 
-    int getDst()
+    int getNode2()
     {
-        return dst;
+        return node2;
+    }
+
+    int getOtherNode(int node)
+    {
+        return node1 == node ? node2 : node1;
+    }
+
+    int getWeight()
+    {
+        return weight;
     }
 
 private:
-    int src;
-    int dst;
+    int node1;
+    int node2;
     int weight;
 };
 
@@ -41,20 +51,19 @@ public:
         return id;
     }
 
-    vector<Edge> getEdges()
+    vector<int> getEdges()
     {
         return edges;
     }
 
-    void addEdge(int dst, int weight)
+    void addEdge(int id)
     {
-        Edge e(id, dst, weight);
-        edges.push_back(e);
+        edges.push_back(id);
     }
 
 private:
     int id;
-    vector<Edge> edges;
+    vector<int> edges;
 };
 
 
@@ -70,42 +79,89 @@ int main()
         nodes.push_back(node);
     }
 
-    vector<Edge> edge;
+    vector<Edge> edges;
+
     for (auto i = 0; i < m; i++) {
-        int src, dst, weight;
-        cin >> src;
-        cin >> dst;
+        int node1, node2, weight, id;
+        cin >> node1;
+        cin >> node2;
         cin >> weight;
 
-        src--;
-        dst--;
+        node1--;
+        node2--;
 
-        nodes[src].addEdge(dst, weight);
-        nodes[dst].addEdge(src, weight);
+        Edge e(node1, node2, weight);
+        id = edges.size();
+        edges.push_back(e);
+
+        nodes[node1].addEdge(id);
+        nodes[node2].addEdge(id);
     }
 
     int start;
     cin >> start;
 
-    bool visited[nodes.size()];
-    visited[start] = true;
-    vector<int> queue;
-    queue.push_back(start);
+    start--;
+
+    vector<Edge> selectedEdges;
+
+    bool visitedNodes[nodes.size()];
+    for (auto i = 0; i < nodes.size(); i++) {
+        visitedNodes[i] = false;
+    }
+
+    visitedNodes[start] = true;
+
+    vector<Edge> queue;
+    for (auto eid : nodes[start].getEdges())
+    {
+        Edge e(start, edges[eid].getOtherNode(start), edges[eid].getWeight());
+        queue.push_back(e);
+    }
+
     for (auto i = 0; i < queue.size(); i++)
     {
-        for (auto e : nodes[queue[i]].getEdges())
+        auto min = 1000000;
+        auto minIdx = -1;
+        for (auto j = 0; j < queue.size(); j++)
         {
-            if (visited[e.getDst()])
-            {
-                continue;
-            }
+            auto e = queue[j];
 
-            visited[e.getDst()] = false;
-            queue.push_back(e.getDst());
+            if (!visitedNodes[e.getNode2()] && e.getWeight() < min)
+            {
+                min = e.getWeight();
+                minIdx = j;
+            }
+        }
+
+        if (minIdx == -1)
+        {
+            break;
+        }
+
+        {
+            auto e = queue[minIdx];
+            Edge eg(e.getNode1(), e.getNode2(), e.getWeight());
+            selectedEdges.push_back(eg);
+            visitedNodes[e.getNode2()] = true;
+
+            for (auto eid : nodes[e.getNode2()].getEdges())
+            {
+                Edge eg(e.getNode2(), edges[eid].getOtherNode(e.getNode2()), edges[eid].getWeight());
+                if (!visitedNodes[eg.getNode2()]) {
+                    queue.push_back(eg);
+                }
+            }
         }
     }
 
-    cout << m << " " << n << endl;
+    auto weight = 0;
+    for (auto e : selectedEdges)
+    {
+        weight += e.getWeight();
+    }
+
+    cout << weight << endl;
 
     return 0;
 }
